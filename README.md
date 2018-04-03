@@ -1,19 +1,19 @@
 GtkTreeViewSQL
 =========================
-**Description:** Captura nombre y edad de usuarios y los almacena en una base de datos PostgreSQL
+**Descripción:** Captura nombre y edad de usuarios y los almacena en una base de datos PostgreSQL
 
-**License:** GNU General Public License v3.0
+**Licencia:** GNU General Public License v3.0
 
 **Source code:** https://github.com/OrigenData/GtkTreeViewSQL/
 
-**Documentation:** https://www.origendata.com/
+**Documentacion:** https://www.origendata.com/
 
 ###### Screenshot
 ![Screenshot](https://origendata.files.wordpress.com/2018/04/gtktreeviewsql.png)
 
 
 
-### Dependencies
+### Dependencias
 
 GtkTreeViewSQL requiere que se instalen las siguientes librerias para ejecutar:
 * GTK 3.20

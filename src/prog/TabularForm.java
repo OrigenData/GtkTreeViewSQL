@@ -146,7 +146,7 @@ public class TabularForm implements Constans{
 			        //Conexion con la base de datos
 			        DB = DriverManager.getConnection(URL, DBUSER, DBPASSWD);
 			 
-			        // Se hara una consulta  de la tabla CDS y Cantante, y se mandara a imprimir.
+			        // Se hara una consulta  de la tabla Persona, y se mandara a imprimir.
 			        st = DB.createStatement();
 			        
 			        st.executeUpdate( "INSERT INTO \"Persona\" (\"perNombre\", \"perEdad\") "
@@ -192,7 +192,7 @@ public class TabularForm implements Constans{
 				        //Conexion con la base de datos
 				        DB = DriverManager.getConnection(URL, DBUSER, DBPASSWD);
 				 
-				        // Se hara una consulta  de la tabla CDS y Cantante, y se mandara a imprimir.
+				        // Se hara una consulta  de la tabla Persona, y se mandara a imprimir.
 				        st = DB.createStatement();
 				        
 				        

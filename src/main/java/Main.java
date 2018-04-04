@@ -1,4 +1,4 @@
-package prog;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,7 +33,7 @@ import java.sql.*;
 
 
 
-public class TabularForm implements Constans{
+public class Main implements Constans{
 	
     Builder builder;
     Window window;
@@ -47,10 +47,11 @@ public class TabularForm implements Constans{
     CellRendererText idText, nameText, ageText;
     String captureName, captureAge ;
 	
-	Connection DB =null;
+    Connection DB =null;
 	Statement st = null;
+	PreparedStatement pst = null;
 	
-	public TabularForm() {
+	public Main() {
 		
 		copyResource();
 		
@@ -71,6 +72,9 @@ public class TabularForm implements Constans{
 		
 	}
 	
+	/**
+	 * Se cargaran todos los Objectos seran utilizados el Glade
+	 */
 	public void getObjectGlade() {
 		
         //Window
@@ -145,12 +149,17 @@ public class TabularForm implements Constans{
                 try {
 			        //Conexion con la base de datos
 			        DB = DriverManager.getConnection(URL, DBUSER, DBPASSWD);
-			 
-			        // Se hara una consulta  de la tabla Persona, y se mandara a imprimir.
-			        st = DB.createStatement();
 			        
-			        st.executeUpdate( "INSERT INTO \"Persona\" (\"perNombre\", \"perEdad\") "
-			        		+ "VALUES ('"+entryName.getText().toUpperCase()+"' , '"+entryAge.getText()+"');" );
+			        String query = "INSERT INTO \"Persona\" (\"perNombre\", \"perEdad\") "
+			        		+ "VALUES ( ? , ? );";
+			        
+			        
+			        pst= DB.prepareStatement(query);
+			        
+			        pst.setString(1, entryName.getText().toUpperCase());
+			        pst.setString(2, entryAge.getText());
+			        
+			        pst.executeUpdate();
 			        
 			        st.close();
 			        DB.close();
@@ -221,7 +230,12 @@ public class TabularForm implements Constans{
 		
 	}
 	
-	
+	/**
+	 * Genera una carpeta en HOME donde se almacenara la GUI.glade
+	 * @param folder
+	 * 			$HOME/TreeView/gui/* Sera donde se almacene el archivo Glade
+	 * 
+	 */
     public void copyResource() {
     	 
         File folder = new File(FOLDER_DIR);
@@ -251,7 +265,7 @@ public class TabularForm implements Constans{
 	public static void main(String[] args) {
 		
 		Gtk.init(args);
-		new TabularForm();
+		new Main();
 		Gtk.main();
 
 	}
